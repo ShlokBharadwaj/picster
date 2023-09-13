@@ -28,12 +28,12 @@ export default {
         },
         {
             name: 'userID',
-            title: 'UserID',
+            title: 'User ID',
             type: 'string'
         },
         {
             name: 'postedBy',
-            title: 'postedBy',
+            title: 'Posted By',
             type: 'postedBy'
         },
         {
