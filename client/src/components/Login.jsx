@@ -14,7 +14,7 @@ const Login = () => {
   return (
     <div className='flex justify-start items-center flex-col h-screen'>
       <div className='relative w-full h-full'>
-        <img className='w-full h-full object-cover' src="https://source.unsplash.com/random/?cool,aeathetic,wallpaper" alt="https://source.unsplash.com" />
+        <img className='w-full h-full object-cover' src="https://source.unsplash.com/random/?cool,aesthetic,wallpaper" alt="https://source.unsplash.com" />
         <div className='absolute flex flex-col justify-center items-center top-0 right-0 left-0 bottom-0' style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }}>
           <div className='p-5'>
             <img src={logo} alt="" width='150px' />
