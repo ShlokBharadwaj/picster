@@ -16,14 +16,13 @@ const Login = () => {
   const [imageSrc, setImageSrc] = useState(''); // Initial empty src
   const query = 'cool,aesthetic,wallpaper'; // Unsplash query parameters
 
-    // Function to fetch a new image from Unsplash
+  // Function to fetch a new image from Unsplash
   const fetchNewImage = () => {
     const newImageUrl = `https://source.unsplash.com/random/?${query}&${Date.now()}`;
-    console.log(newImageUrl);
     setImageSrc(newImageUrl);
   };
 
-    // Fetch a new image every 7 seconds (7000 milliseconds)
+  // Fetch a new image every 7 seconds (7000 milliseconds)
   useEffect(() => {
     const intervalId = setInterval(fetchNewImage, 7000);
 
@@ -31,14 +30,20 @@ const Login = () => {
     return () => clearInterval(intervalId);
   }, []);
 
+  // Add custom CSS for the fade-in transition effect
+  const imageStyle = {
+    animation: `${imageSrc ? 'fadeIn' : 'fadeOut'} 1s ease-in-out forwards`,
+    backgroundColor: '#a9def9',
+  };
+
   return (
     <div className='flex justify-start items-center flex-col h-screen'>
       <div className='relative w-full h-full'>
         <img
-          className='w-full h-full object-cover transition-opacity duration-1000'
+          className='w-full h-full object-cover'
           src={imageSrc}
           alt='Random Unsplash Image'
-          style={{ opacity: imageSrc ? 1 : 0 }} // Fade-in effect
+          style={imageStyle}
         />
         <div className='absolute flex flex-col justify-center items-center top-0 right-0 left-0 bottom-0' style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }}>
           <div className='p-5'>
