@@ -5,6 +5,8 @@ import { FcGoogle } from 'react-icons/fc';
 
 import logo from '../assets/picster-logos_white.png';
 
+import { client } from '../client';
+
 const Login = () => {
 
   // Handle Google response
