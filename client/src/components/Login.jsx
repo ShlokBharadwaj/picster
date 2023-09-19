@@ -21,7 +21,7 @@ const Login = () => {
           </div>
           <div className='shadow-2xl'>
             <GoogleLogin
-              clientId={process.env.GOOGLE_API_KEY}
+              clientId={process.env.REACT_APP_GOOGLE_API_KEY}
               render={renderProps => (
                 <button onClick={renderProps.onClick} disabled={renderProps.disabled} className='flex justify-center items-center bg-white text-black rounded-full px-5 py-3 cursor-pointer outline-none' type="button">
                   <FcGoogle className='mr-2' />
