@@ -42,7 +42,7 @@ const Login = () => {
   // Fetch a new image every 5 seconds (5000 milliseconds)
   // TODO: Make the interval to 5 seconds
   useEffect(() => {
-    const intervalId = setInterval(fetchNewImage, 500000000);
+    const intervalId = setInterval(fetchNewImage, 5000);
 
     // Clear the interval when the component unmounts
     return () => clearInterval(intervalId);
