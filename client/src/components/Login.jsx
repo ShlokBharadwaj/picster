@@ -42,7 +42,7 @@ const Login = () => {
   // Fetch a new image every 5 seconds (5000 milliseconds)
   // TODO: Make the interval to 5 seconds
   useEffect(() => {
-    const intervalId = setInterval(fetchNewImage, 5000);
+    const intervalId = setInterval(fetchNewImage, 500000);
 
     // Clear the interval when the component unmounts
     return () => clearInterval(intervalId);
@@ -60,7 +60,7 @@ const Login = () => {
         <img
           className='w-full h-full object-cover'
           src={imageSrc}
-          alt='Random Unsplash Image'
+          alt='https://source.unsplash.com/'
           style={imageStyle}
         />
         <div className='absolute flex flex-col justify-center items-center top-0 right-0 left-0 bottom-0' style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }}>
