@@ -13,21 +13,25 @@ const Login = () => {
 
   // Handle Google response
   const responseGoogle = (response) => {
-    localStorage.setItem('user', JSON.stringify(response.profileObj));
-    const { name, googleId, imageUrl } = response.profileObj;
-    const doc = {
-      _id: googleId,
-      _type: 'user',
-      userName: name,
-      image: imageUrl,
-    }
+    if (response && response.profileObj) {
+      localStorage.setItem('user', JSON.stringify(response.profileObj));
+      const { name, googleId, imageUrl } = response.profileObj;
+      const doc = {
+        _id: googleId,
+        _type: 'user',
+        userName: name,
+        image: imageUrl,
+      };
 
-    client.createIfNotExists(doc)
-      .then(() => {
+      client.createIfNotExists(doc).then(() => {
         navigate('/', { replace: true });
       });
+    } else {
+      // Handle the case where the response is not as expected
+      console.error('Invalid Google response:', response);
+    }
+  };
 
-  }
 
   // Handle dynamic image load every 5 sec interval
   const [imageSrc, setImageSrc] = useState(''); // Initial empty src
@@ -60,7 +64,7 @@ const Login = () => {
         <img
           className='w-full h-full object-cover'
           src={imageSrc}
-          alt='https://source.unsplash.com/'
+          // alt='https://source.unsplash.com/'
           style={imageStyle}
         />
         <div className='absolute flex flex-col justify-center items-center top-0 right-0 left-0 bottom-0' style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }}>
