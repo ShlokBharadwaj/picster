@@ -53,7 +53,7 @@ const Login = () => {
       <div className='flex justify-start items-center flex-col h-screen'>
         <div className='relative w-full h-full'>
           <img
-            className={`w-full h-full object-cover ${isLoaded ? 'animate-slide-in' : ''} `}
+            className={`w-full h-full object-cover ${isLoaded ? 'animate-fade-in' : ''} `}
             src={imageSrc}
             alt='https://source.unsplash.com/'
             onLoad={() => setIsLoaded(true)}

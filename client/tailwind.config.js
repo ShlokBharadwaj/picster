@@ -74,12 +74,23 @@ module.exports = {
         'fade-in': {
           '0%': { opacity: 0 },
           '100%': { opacity: 1 },
-        }
+        },
+        'zoom-in': {
+          '0%': { transform: 'scale(0.5)', opacity: 0 },
+          '50%': { transform: 'scale(1.1)', opacity: 0.5 },
+          '100%': { transform: 'scale(1)', opacity: 1},
+        },
+        'flip': {
+          '0%': { transform: 'rotateY(0deg)' },
+          '100%': { transform: 'rotateY(180deg)' },
+        },
       },
       animation: {
         'slide-in': 'slide-in 1s ease-out',
         'slide-fwd': ' slide-fwd 0.45s cubic-bezier(0.250, 0.460, 0.450, 0.940) both',
         'fade-in': 'fade-in 2s ease-in-out',
+        'zoom-in': 'zoom-in 0.5s ease-in-out',
+        'flip': 'flip 1s linear',
       },
       transitionProperty: {
         height: 'height',
