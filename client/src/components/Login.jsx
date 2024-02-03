@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import GoogleLogin from 'react-google-login';
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 
@@ -25,7 +25,6 @@ const Login = () => {
     }
   };
 
-
   // Handle dynamic image load every 5 sec interval
   const [imageSrc, setImageSrc] = useState(''); // Initial empty src
   const query = 'cool,aesthetic,wallpaper'; // Unsplash query parameters
@@ -44,29 +43,28 @@ const Login = () => {
   }, []);
 
   return (
-    <div className='flex justify-start items-center flex-col h-screen'>
-      <div className='relative w-full h-full'>
-        <img
-          className='w-full h-full object-cover animate-slide-in'
-          src={imageSrc}
-          alt='https://source.unsplash.com/'
-        />
-        <div className='absolute flex flex-col justify-center items-center top-0 right-0 left-0 bottom-0' style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }}>
-          <div className='p-5'>
-            <img src={logo} alt="" width='150px' />
-          </div>
-          <div className='shadow-2xl'>
-            <GoogleLogin
-              clientId={process.env.REACT_APP_GOOGLE_API_KEY}
-              buttonText="Login"
-              onSuccess={responseGoogle}
-              onFailure={responseGoogle}
-              cookiePolicy={'single_host_origin'}
-            />
+    <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
+      <div className='flex justify-start items-center flex-col h-screen'>
+        <div className='relative w-full h-full'>
+          <img
+            className='w-full h-full object-cover animate-slide-in'
+            src={imageSrc}
+            alt='https://source.unsplash.com/'
+          />
+          <div className='absolute flex flex-col justify-center items-center top-0 right-0 left-0 bottom-0' style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }}>
+            <div className='p-5'>
+              <img src={logo} alt="" width='150px' />
+            </div>
+            <div className='shadow-2xl'>
+              <GoogleLogin
+                onSuccess={responseGoogle}
+                onError={responseGoogle}
+              />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </GoogleOAuthProvider>
   )
 }
 
