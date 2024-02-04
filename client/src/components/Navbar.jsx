@@ -8,14 +8,14 @@ import logo from '../assets/picster-logos_white.png';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState(null);
-  
   const userInfoString = localStorage.getItem('picster-user');
   const userInfo = userInfoString ? JSON.parse(userInfoString) : null;
 
   useEffect(() => {
     const query = userQuery(userInfo?._id);
 
-    sanityClient.fetch(query)
+    sanityClient
+      .fetch(query)
       .then(data => {
         if (data) {
           setUser(data[0]);
@@ -45,7 +45,7 @@ const Navbar = () => {
             <FiPlus size={24} className="w-10 h-10 object-cover object-center rounded-full" />
           </button>
           <button className="p-1">
-            <Link to={`user-profile/${userInfo?._id}`}>
+            <Link to={`user-profile/${userInfo?.sub}`}>
               <img
                 src={userInfo?.picture || 'https://via.placeholder.com/150'}
                 alt="profile"
