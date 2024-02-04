@@ -10,13 +10,7 @@ import logo from '../assets/picster-logos_white.png';
 
 const Home = () => {
   return (
-    <div>
-      <Navbar />
-      <div className="flex bg-gray-50 md:flex-row flex-col h-screen transition-height duration-75 ease-linear">
-        <div className="hidden md:flex h-screen flex-row">
-        </div>
-      </div>
-    </div>
+    <Navbar />
   )
 }
 
