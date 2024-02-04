@@ -24,6 +24,16 @@ const Login = () => {
     } else {
       console.log('Google Sign-In success:', response);
       // Handle successful sign-in
+      localStorage.setItem('picster-user', JSON.stringify(response.profileObj));
+      const { name, email, googleId, imageUrl } = response.profileObj;
+
+      const doc = {
+        _id: googleId,
+        _type: 'user',
+        userName: name,
+        image: imageUrl,
+        email: email,
+      }
     }
   };
 
