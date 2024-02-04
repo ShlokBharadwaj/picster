@@ -66,6 +66,16 @@ const Login = () => {
               <GoogleLogin
                 onSuccess={responseGoogle}
                 onError={responseGoogle}
+                render={renderProps => (
+                  <button
+                    onClick={renderProps.onClick}
+                    disabled={renderProps.disabled}
+                    className='flex justify-center items-center bg-white text-black rounded-full p-3 shadow-lg'
+                  >
+                    <FcGoogle size={30} />
+                    <span className='ml-2'>Sign in with Google</span>
+                  </button>
+                )}
               />
             </div>
           </div>
