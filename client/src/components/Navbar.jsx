@@ -7,11 +7,11 @@ const Navbar = () => {
 
   return (
     <div className="flex flex-col bg-gray-800 text-white">
-      <div className="flex justify-between items-center p-2">
+      <div className="flex justify-between items-center p-1">
         <img
           src={logo}
           alt="logo"
-          className="w-16 h-16 md:w-20 md:h-20 lg:w-16 lg:h-16 object-contain max-w-full max-h-full"
+          className="w-28 h-24 object-cover object-center -m-1"
         />
         <input
           className="flex-grow mx-5 py-2 px-4 rounded-full"
@@ -27,22 +27,38 @@ const Navbar = () => {
           </button>
         </div>
       </div>
-      <div className="hidden md:flex space-x-4 p-3">
+      <div className="hidden md:flex max-w-full mx-1 justify-around p-2">
         <span>Cars</span>
         <span>Nature</span>
         <span>Photography</span>
-        {/* Add more spans for additional navigation items */}
+        <span>Cars</span>
+        <span>Nature</span>
+        <span>Photography</span>
+        <span>Cars</span>
+        <span>Nature</span>
+        <span>Photography</span>
+        <span>Cars</span>
+        <span>Nature</span>
+        <span>Photography</span>
       </div>
-      <div className="md:hidden flex items-center p-5" onClick={() => setIsOpen(!isOpen)}>
+      <div className="md:hidden flex items-center justify-center p-2" onClick={() => setIsOpen(!isOpen)}>
         <span>Menu</span>
         {isOpen ? <FiChevronUp size={24} /> : <FiChevronDown size={24} />}
       </div>
       {isOpen && (
-        <div className="md:hidden flex flex-col p-5">
+        <div className="md:hidden flex flex-col p-5 items-center justify-center">
           <span>Cars</span>
           <span>Nature</span>
           <span>Photography</span>
-          {/* Add more spans for additional navigation items */}
+          <span>Cars</span>
+          <span>Nature</span>
+          <span>Photography</span>
+          <span>Cars</span>
+          <span>Nature</span>
+          <span>Photography</span>
+          <span>Cars</span>
+          <span>Nature</span>
+          <span>Photography</span>
         </div>
       )}
     </div>
