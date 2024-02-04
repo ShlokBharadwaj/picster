@@ -2,16 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
-
-import logo from '../assets/picster-logos_white.png';
-import { jwtDecode } from "jwt-decode";
-
 import { sanityClient } from '../client';
+import { jwtDecode } from "jwt-decode";
+import logo from '../assets/picster-logos_white.png';
 
 const Login = () => {
 
   const [isLoaded, setIsLoaded] = useState(false);
-
   const navigate = useNavigate();
 
   // Handle Google response
@@ -23,12 +20,24 @@ const Login = () => {
       console.error('Google Sign-In popup closed by the user.');
       // Handle popup closed by user
     } else {
-      console.log('Google Sign-In response:', response);
       // Handle successful sign-in
       const decodedToken = jwtDecode(response.credential);
-      console.log('Decoded Token:', decodedToken);
-    }
-  };
+      localStorage.setItem('picster-user', JSON.stringify(decodedToken));
+
+      const { name, sub, picture } = decodedToken;
+      const doc = {
+        _type: 'user',
+        _id: sub,
+        userName: name,
+        image: picture,
+      };
+
+      sanityClient.createIfNotExists(doc)
+        .then(() => {
+          navigate('/', { replace: true });
+        })
+    };
+  }
 
   // Handle dynamic image load every 5 sec interval
   const [imageSrc, setImageSrc] = useState(''); // Initial empty src
