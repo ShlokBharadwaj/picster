@@ -4,8 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 
 import logo from '../assets/picster-logos_white.png';
+import { jwtDecode } from "jwt-decode";
 
-import { client } from '../client';
+import { sanityClient } from '../client';
 
 const Login = () => {
 
@@ -22,18 +23,10 @@ const Login = () => {
       console.error('Google Sign-In popup closed by the user.');
       // Handle popup closed by user
     } else {
-      console.log('Google Sign-In success:', response);
+      console.log('Google Sign-In response:', response);
       // Handle successful sign-in
-      localStorage.setItem('picster-user', JSON.stringify(response.profileObj));
-      const { name, email, googleId, imageUrl } = response.profileObj;
-
-      const doc = {
-        _id: googleId,
-        _type: 'user',
-        userName: name,
-        image: imageUrl,
-        email: email,
-      }
+      const decodedToken = jwtDecode(response.credential);
+      console.log('Decoded Token:', decodedToken);
     }
   };
 
