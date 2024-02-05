@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Link, Route, Routes, NavLink } from 'react-router-dom';
 import { FiPlus, FiUser, FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import { userQuery } from "../utils/data";
 import { sanityClient } from '../client';
@@ -10,6 +10,21 @@ const Navbar = () => {
   const [user, setUser] = useState(null);
   const userInfoString = localStorage.getItem('picster-user');
   const userInfo = userInfoString ? JSON.parse(userInfoString) : null;
+
+  const categories = [
+    { name: 'Cars', link: '/cars' },
+    { name: 'Animals', link: '/animals' },
+    { name: 'Art', link: '/art' },
+    { name: 'Bikes', link: '/bikes' },
+    { name: 'Portraits', link: '/portraits' },
+    { name: 'Design', link: '/design' },
+    { name: 'Web', link: '/web' },
+    { name: 'UI Design', link: '/ui-design' },
+    { name: 'Abstract', link: '/abstract' },
+    { name: 'Memes', link: '/memes' },
+    { name: 'Dogs', link: '/dogs' },
+    { name: 'Photography', link: '/photography' },
+  ];
 
   useEffect(() => {
     const query = userQuery(userInfo?._id);
@@ -56,18 +71,16 @@ const Navbar = () => {
         </div>
       </div>
       <div className="hidden md:flex max-w-full mx-1 justify-around p-2 ">
-        <span>Cars</span>
-        <span>Nature</span>
-        <span>Photography</span>
-        <span>Cars</span>
-        <span>Nature</span>
-        <span>Photography</span>
-        <span>Cars</span>
-        <span>Nature</span>
-        <span>Photography</span>
-        <span>Cars</span>
-        <span>Nature</span>
-        <span>Photography</span>
+        {categories.map((category, index) => (
+          <NavLink
+            key={index}
+            to={category.link}
+            className="hover:text-gray-400"
+            activeClassName="text-white"
+          >
+            {category.name}
+          </NavLink>
+        ))}
       </div>
       <div className="md:hidden flex items-center justify-center p-2" onClick={() => setIsOpen(!isOpen)}>
         <span>Menu</span>
@@ -75,18 +88,16 @@ const Navbar = () => {
       </div>
       {isOpen && (
         <div className="md:hidden flex flex-col p-5 items-center justify-center">
-          <span>Cars</span>
-          <span>Nature</span>
-          <span>Photography</span>
-          <span>Cars</span>
-          <span>Nature</span>
-          <span>Photography</span>
-          <span>Cars</span>
-          <span>Nature</span>
-          <span>Photography</span>
-          <span>Cars</span>
-          <span>Nature</span>
-          <span>Photography</span>
+          {categories.map((category, index) => (
+            <NavLink
+              key={index}
+              to={category.link}
+              className="hover:text-gray-400"
+              activeClassName="text-white"
+            >
+              {category.name}
+            </NavLink>
+          ))}
         </div>
       )}
     </div>
