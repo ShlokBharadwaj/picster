@@ -5,9 +5,11 @@ import { userQuery } from "../utils/data";
 import { sanityClient } from '../client';
 import logo from '../assets/picster-logos_white.png';
 
-const Navbar = () => {
+const Navbar = ({ userProp }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState(null);
+  const [activeCategory, setActiveCategory] = useState('');
+
   const userInfoString = localStorage.getItem('picster-user');
   const userInfo = userInfoString ? JSON.parse(userInfoString) : null;
 
@@ -79,7 +81,7 @@ const Navbar = () => {
           <NavLink
             key={index}
             to={category.link}
-            className="hover:text-gray-400"
+            className="hover:text-gray-400 rounded-md border border-transparent focus:border-white p-2 hover:border-white transition-all duration-300 ease-in-out focus:bg-gray-700 focus:text-white"
             activeClassName="text-white"
           >
             {category.name}
@@ -87,7 +89,7 @@ const Navbar = () => {
         ))}
       </div>
       <div className="md:hidden flex items-center justify-center p-2" onClick={() => setIsOpen(!isOpen)}>
-        <span>Menu</span>
+        <span>{activeCategory || "Menu"}</span>
         {isOpen ? <FiChevronUp size={24} /> : <FiChevronDown size={24} />}
       </div>
       {isOpen && (
@@ -96,8 +98,12 @@ const Navbar = () => {
             <NavLink
               key={index}
               to={category.link}
-              className="hover:text-gray-400"
+              className="hover:text-gray-400 rounded-md border border-transparent focus:border-white p-2 hover:border-white transition-all duration-300 ease-in-out focus:bg-gray-700 focus:text-white"
               activeClassName="text-white"
+              onClick={() => {
+                setIsOpen(false)
+                setActiveCategory(category.name)
+              }}
             >
               {category.name}
             </NavLink>
