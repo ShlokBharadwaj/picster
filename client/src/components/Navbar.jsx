@@ -12,18 +12,18 @@ const Navbar = () => {
   const userInfo = userInfoString ? JSON.parse(userInfoString) : null;
 
   const categories = [
-    { name: 'Cars', link: '/cars' },
-    { name: 'Animals', link: '/animals' },
-    { name: 'Art', link: '/art' },
-    { name: 'Bikes', link: '/bikes' },
-    { name: 'Portraits', link: '/portraits' },
-    { name: 'Design', link: '/design' },
-    { name: 'Web', link: '/web' },
-    { name: 'UI Design', link: '/ui-design' },
-    { name: 'Abstract', link: '/abstract' },
-    { name: 'Memes', link: '/memes' },
-    { name: 'Dogs', link: '/dogs' },
-    { name: 'Photography', link: '/photography' },
+    { name: 'Cars', link: '/category/cars' },
+    { name: 'Animals', link: '/category/animals' },
+    { name: 'Art', link: '/category/art' },
+    { name: 'Coding', link: '/category/coding' },
+    { name: 'Portraits', link: '/category/portraits' },
+    { name: 'Design', link: '/category/design' },
+    { name: 'Web', link: '/category/web' },
+    { name: 'UI Design', link: '/category/ui-design' },
+    { name: 'Abstract', link: '/category/abstract' },
+    { name: 'Memes', link: '/category/memes' },
+    { name: 'Photography', link: '/category/photography' },
+    { name: 'Others', link: '/category/others' },
   ];
 
   useEffect(() => {
@@ -60,18 +60,22 @@ const Navbar = () => {
             <FiPlus size={24} className="w-10 h-10 object-cover object-center rounded-full" />
           </button>
           <button className="p-0 md:p-1">
-            <Link to={`user-profile/${userInfo?.sub}`}>
-              <img
-                src={userInfo?.picture || 'https://via.placeholder.com/150'}
-                alt="profile"
-                className="w-10 h-10 object-cover object-center rounded-full"
-              />
-            </Link>
+            {userInfo ? (
+              <Link to={`user-profile/${userInfo?.sub}`}>
+                <img
+                  src={userInfo?.picture || 'https://via.placeholder.com/150'}
+                  alt="profile"
+                  className="w-10 h-10 object-cover object-center rounded-full"
+                />
+              </Link>
+            ) : (
+              <FiUser size={24} />
+            )}
           </button>
         </div>
       </div>
       <div className="hidden md:flex max-w-full mx-1 justify-around p-2 ">
-        {categories.map((category, index) => (
+        {categories.slice(0, categories.length - 1).map((category, index) => (
           <NavLink
             key={index}
             to={category.link}
@@ -88,7 +92,7 @@ const Navbar = () => {
       </div>
       {isOpen && (
         <div className="md:hidden flex flex-col p-5 items-center justify-center">
-          {categories.map((category, index) => (
+          {categories.slice(0, categories.length - 1).map((category, index) => (
             <NavLink
               key={index}
               to={category.link}
