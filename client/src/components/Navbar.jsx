@@ -27,7 +27,7 @@ const Navbar = () => {
   ];
 
   useEffect(() => {
-    const query = userQuery(userInfo?._id);
+    const query = userQuery(userInfo?.sub);
 
     sanityClient
       .fetch(query)

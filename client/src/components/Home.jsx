@@ -6,11 +6,36 @@ import { Link, Route, Routes } from 'react-router-dom';
 import { Navbar, Login, UserProfile } from './index';
 import Pins from './Pins';
 import { sanityClient } from '../client';
+import { userQuery } from "../utils/data";
 import logo from '../assets/picster-logos_white.png';
 
 const Home = () => {
+
+  const [user, setUser] = useState(null);
+
+  const userInfoString = localStorage.getItem('picster-user');
+  const userInfo = userInfoString ? JSON.parse(userInfoString) : null;
+
+  useEffect(() => {
+    const query = userQuery(userInfo?.sub);
+
+    sanityClient
+      .fetch(query)
+      .then(data => {
+        if (data) {
+          setUser(data[0]);
+        }
+      })
+      .catch(console.error);
+  }, []);
+
   return (
-    <Navbar />
+    // <Navbar />
+    <div className="flex bg-gray-50 md:flex-row flex-col h-screen transition-height duration-75 ease-in-out">
+      <div className="flex h-screen flex-initial">
+        <Navbar user={user && user} />
+      </div>
+    </div>
   )
 }
 
