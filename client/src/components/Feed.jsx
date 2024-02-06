@@ -4,13 +4,31 @@ import { useParams } from 'react-router-dom';
 import { sanityClient } from '../client.js';
 import MasonryLayout from './MasonryLayout.jsx';
 import Spinner from './Spinner.jsx';
+import { searchQuery } from "../utils/data.js";
 
 const Feed = () => {
 
   const [loading, setLoading] = useState(false);
+  const { categoryId } = useParams();
+  const [pins, setPins] = useState(null);
 
-  if (!loading) {
-    return <Spinner message="We are adding new ideas to your feed!" />;
+  useEffect(() => {
+    setLoading(true);
+    if (categoryId) {
+      const query = searchQuery(categoryId);
+
+      sanityClient.fetch(query)
+        .then((data) => {
+          setPins(data);
+          setLoading(false);
+        })
+    } else {
+
+    }
+  }, [categoryId]);
+
+  if (loading) {
+    return <Spinner message="We are loading new images to your feed!" />;
   }
 
   return (
