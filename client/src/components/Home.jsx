@@ -12,6 +12,7 @@ import logo from '../assets/picster-logos_white.png';
 const Home = () => {
 
   const [user, setUser] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const userInfoString = localStorage.getItem('picster-user');
   const userInfo = userInfoString ? JSON.parse(userInfoString) : null;
@@ -30,12 +31,14 @@ const Home = () => {
   }, []);
 
   return (
-    // <Navbar />
-    <div className="flex bg-gray-50 md:flex-row flex-col h-screen transition-height duration-75 ease-in-out">
-      <div className="flex h-screen flex-initial">
-        <Navbar user={user && user} />
+    <>
+      <Navbar user={user && user} searchTerm={searchTerm} />
+      <div className="flex bg-gray-50 md:flex-row flex-col h-screen transition-height duration-75 ease-in-out">
+        <div className="flex h-screen flex-initial">
+          <Pins searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 
