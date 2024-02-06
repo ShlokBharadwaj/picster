@@ -32,7 +32,7 @@ const Home = () => {
 
   return (
     <>
-      <Navbar user={user && user} searchTerm={searchTerm} />
+      <Navbar user={user && user} searchTerm={setSearchTerm} />
       <div className="flex bg-gray-50 md:flex-row flex-col h-screen transition-height duration-75 ease-in-out">
         <div className="flex h-screen flex-initial">
           <Pins searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
