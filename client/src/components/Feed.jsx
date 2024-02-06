@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { sanityClient } from '../client.js';
 import MasonryLayout from './MasonryLayout.jsx';
 import Spinner from './Spinner.jsx';
-import { searchQuery } from "../utils/data.js";
+import { feedQuery, searchQuery } from "../utils/data.js";
 
 const Feed = () => {
 
@@ -23,7 +23,11 @@ const Feed = () => {
           setLoading(false);
         })
     } else {
-
+      sanityClient.fetch(feedQuery)
+        .then((data) => {
+          setPins(data);
+          setLoading(false);
+        })
     }
   }, [categoryId]);
 
