@@ -23,6 +23,45 @@ const CreatePin = ({ user }) => {
   const stringifiedUser = JSON.stringify(user);
   const parsedUser = JSON.parse(stringifiedUser);
 
+  // console.log(parsedUser.user.sub);
+  // console.log(imageAsset?._id);
+
+  const savePin = () => {
+    if (title && about && destination && imageAsset?._id && category) {
+      const pin = {
+        _type: "pin",
+        title,
+        about,
+        destination,
+        category,
+        image: {
+          _type: 'image',
+          asset: {
+            _type: 'reference',
+            _ref: imageAsset?._id
+          }
+        },
+        userId: user._id,
+        postedBy: {
+          _type: "postedBy",
+          _ref: user._id,
+        },
+        category,
+      };
+
+      sanityClient.create(pin)
+        .then(() => {
+          navigate('/')
+        })
+    } else {
+      setFields(true);
+
+      setTimeout(() => {
+        setFields(false);
+      }, 2000);
+    }
+  };
+
   return (
     <div className="flex flex-col justify-center items-center mt-5 lg:h-4/5">
       {fields && (
@@ -141,6 +180,14 @@ const CreatePin = ({ user }) => {
                   </option>
                 ))}
               </select>
+            </div>
+            <div>
+              <button
+                type="button"
+                onClick={savePin}
+                className="text-black font-bold p-3 rounded-md w-full hover:shadow-lg transition-all duration-300 ease-linear mt-4 shadow-2xl outline-1">
+                Create Pin
+              </button>
             </div>
           </div>
         </div>
