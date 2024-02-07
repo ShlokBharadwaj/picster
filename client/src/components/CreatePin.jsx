@@ -30,7 +30,8 @@ const CreatePin = ({ user }) => {
       <div className="flex lg:flex-row flex-col justify-center items-center bg-white p-3 lg:p-5 lg:w-4/5 w-full">
         <div className="bg-secondaryColor p-3 flex flex-0.7 w-full">
           <div className="flex justify-center items-center flex-col border-2 border-dotted border-gray-300 p-3 w-full h-420">
-
+            {!loading &&
+              <Spinner message={"Loading..."}/>}
           </div>
         </div>
       </div>

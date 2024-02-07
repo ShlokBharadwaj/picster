@@ -3,7 +3,7 @@ import { Vortex } from 'react-loader-spinner';
 
 const Spinner = ({ message }) => {
   return (
-    <div className="flex flex-col justify-center items-center w-screen h-screen">
+    <div className="flex flex-col justify-center items-center">
       <Vortex
         visible={true}
         height="80"
