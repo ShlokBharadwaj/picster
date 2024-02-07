@@ -8,13 +8,14 @@ import Pins from './Pins';
 import { sanityClient } from '../client';
 import { userQuery } from "../utils/data";
 import logo from '../assets/picster-logos_white.png';
+import { fetchUser } from "../utils/fetchUsers";
 
 const Home = () => {
 
   const [user, setUser] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
 
-  const userInfoString = localStorage.getItem('picster-user');
+  const userInfoString = fetchUser();
   const userInfo = userInfoString ? JSON.parse(userInfoString) : null;
 
   useEffect(() => {

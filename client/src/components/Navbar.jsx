@@ -4,6 +4,7 @@ import { FiPlus, FiUser, FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import { userQuery } from "../utils/data";
 import { sanityClient } from '../client';
 import logo from '../assets/picster-logos_white.png';
+import { fetchUser } from "../utils/fetchUsers";
 
 const Navbar = ({ searchTerm, setSearchTerm, userProp }) => {
 
@@ -13,7 +14,7 @@ const Navbar = ({ searchTerm, setSearchTerm, userProp }) => {
   const [user, setUser] = useState(null);
   const [activeCategory, setActiveCategory] = useState('');
 
-  const userInfoString = localStorage.getItem('picster-user');
+  const userInfoString = fetchUser();
   const userInfo = userInfoString ? JSON.parse(userInfoString) : null;
 
   const categories = [

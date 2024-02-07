@@ -5,12 +5,15 @@ import { v4 as uuidv4 } from 'uuid';
 import { MdDownloadForOffline } from 'react-icons/md';
 import { AiTwotoneDelete } from "react-icons/ai";
 import { BsFillArrowUpRightCircleFill } from "react-icons/bs";
+import { fetchUser } from "../utils/fetchUsers";
 
 const Pin = ({ pin: { postedBy, image, _id, destination } }) => {
 
   const [postHovered, setPostHovered] = useState(false);
-  const navigate = useNavigate();
   const [savingPost, setSavingPost] = useState(false);
+  const navigate = useNavigate();
+
+  const userInfoString = fetchUser();
 
   return (
     <div className="m-2">
@@ -37,6 +40,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination } }) => {
                   <MdDownloadForOffline className="text-white text-2xl hover:opacity-75" />
                 </a>
               </div>
+              { }
             </div>
           </div>
         )}
