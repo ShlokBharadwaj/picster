@@ -109,14 +109,40 @@ const CreatePin = ({ user }) => {
             placeholder="Title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="border-2 border-gray-300 p-2 rounded-md w-full"
+            className="border-2 border-gray-300 p-2 rounded-md w-full font-bold outline-none"
           />
           <textarea
             placeholder="About"
             value={about}
             onChange={(e) => setAbout(e.target.value)}
-            className="border-2 border-gray-300 p-2 rounded-md w-full resize-none"
+            className="border-2 border-gray-300 p-2 rounded-md w-full resize-none outline-none"
           />
+          <input
+            type="text"
+            placeholder="Destination"
+            value={destination}
+            onChange={(e) => setDestination(e.target.value)}
+            className="border-2 border-gray-300 p-2 rounded-md w-full font-bold outline-none"
+          />
+          <div className="flex flex-col">
+            <div>
+              <p className="mb-2 font-semibold">Choose pin Category:</p>
+              <select
+                onChange={(e) => setCategory(e.target.value)}
+                value={category}
+                className="border-2 border-gray-300 p-2 rounded-md w-full capitalize outline-none"
+              >
+                <option value={"other"} className="bg-white">Select Category</option>
+                {categories.map((category, index) => (
+                  <option key={index}
+                    value={category.value}
+                    className="text-base border-none outline-none bg-white text-black">
+                    {category.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
         </div>
       </div>
     </div>
