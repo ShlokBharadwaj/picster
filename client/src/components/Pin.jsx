@@ -10,11 +10,11 @@ import { CiLocationArrow1 } from "react-icons/ci";
 
 const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
 
-  console.log('postedBy:', postedBy);
-  console.log('image:', image);
-  console.log('_id:', _id);
-  console.log('destination:', destination);
-  console.log('save:', save);
+  // console.log('postedBy:', postedBy);
+  // console.log('image:', image);
+  // console.log('_id:', _id);
+  // console.log('destination:', destination);
+  // console.log('save:', save);
 
   const [postHovered, setPostHovered] = useState(false);
   const navigate = useNavigate();
@@ -23,8 +23,8 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
 
   const user = JSON.parse(userInfoString);
 
-  console.log('User:', user.sub);
-  console.log('PostedBy ID: ', postedBy?._id);
+  // console.log('User:', user.sub);
+  // console.log('PostedBy ID: ', postedBy?._id);
 
   const alreadySaved = !!(save?.filter((item) => item.postedBy?._id === user.sub));
 
