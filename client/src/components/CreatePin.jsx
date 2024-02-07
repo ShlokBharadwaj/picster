@@ -21,7 +21,13 @@ const CreatePin = ({ user }) => {
   const navigate = useNavigate();
 
   return (
-    <div>CreatePin</div>
+    <div className="flex flex-col justify-center items-center mt-5 lg:h-4/5">
+      {!fields && (
+        <p className="text-center text-red-500 mb-0 text-xl transition-all duration-100 ease-linear">
+          Please fill all the fields!
+        </p>
+      )}
+    </div>
   )
 }
 
