@@ -41,7 +41,15 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
           window.location.reload();
         })
     }
-  }
+  };
+
+  const deletePin = (id) => {
+    sanityClient
+      .delete(id)
+      .then(() => {
+        window.location.reload();
+      });
+  };
 
   return (
     <div className="m-2">
