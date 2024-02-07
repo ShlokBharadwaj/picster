@@ -7,13 +7,41 @@ import { AiTwotoneDelete } from "react-icons/ai";
 import { BsFillArrowUpRightCircleFill } from "react-icons/bs";
 import { fetchUser } from "../utils/fetchUsers";
 
-const Pin = ({ pin: { postedBy, image, _id, destination } }) => {
+const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
+
+  console.log('postedBy:', postedBy);
+  console.log('image:', image);
+  console.log('_id:', _id);
+  console.log('destination:', destination);
+  console.log('save:', save);
 
   const [postHovered, setPostHovered] = useState(false);
-  const [savingPost, setSavingPost] = useState(false);
   const navigate = useNavigate();
 
   const userInfoString = fetchUser();
+
+  const alreadySaved = !!(save?.filter((item) => item.postedBy?._id === userInfoString.sub));
+
+  const savePin = async (postId) => {
+    if (!alreadySaved) {
+
+      sanityClient
+        .patch(postId)
+        .setIfMissing({ save: [] })
+        .insert("after", "save[-1]", [{
+          _key: uuidv4(),
+          userId: userInfoString.sub,
+          postedBy: {
+            _type: "postedBy",
+            _ref: sanityClient.sub
+          }
+        }])
+        .commit()
+        .then(() => {
+          window.location.reload();
+        })
+    }
+  }
 
   return (
     <div className="m-2">
@@ -27,9 +55,10 @@ const Pin = ({ pin: { postedBy, image, _id, destination } }) => {
         {postHovered && (
           <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
             <div className="flex flex-col items-center justify-center">
-              <div className="flex items-center justify-center hover:opacity-75 mb-12">
-                <Link to={`/pin-detail/${_id}`} className="text-white text-lg font-bold mr-2 cursor-pointer">View</Link>
-                <BsFillArrowUpRightCircleFill className="text-white text-2xl cursor-pointer" />
+              <div className="flex items-center justify-center hover:opacity-75 mb-12 text-white cursor-pointer">
+                <Link to={`/pin-detail/${_id}`} className="text-lg font-bold mb-10 text-center">View
+                  <BsFillArrowUpRightCircleFill className="text-2xl ml-2" />
+                </Link>
               </div>
               <div className="flex items-center justify-center cursor-pointer">
                 <a
@@ -40,7 +69,27 @@ const Pin = ({ pin: { postedBy, image, _id, destination } }) => {
                   <MdDownloadForOffline className="text-white text-2xl hover:opacity-75" />
                 </a>
               </div>
-              { }
+              {alreadySaved ? (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    savePin(_id);
+                  }}
+                  className="bg-red-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-2 text-base rounded-full hover:shadow-md outline-none mt-10">
+                  {save?.length}  Saved
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    savePin(_id);
+                  }}
+                  className="bg-red-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-2 text-base rounded-full hover:shadow-md outline-none mt-10">
+                  Save
+                </button>
+              )}
             </div>
           </div>
         )}
