@@ -21,7 +21,12 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
 
   const userInfoString = fetchUser();
 
-  const alreadySaved = !!(save?.filter((item) => item.postedBy?._id === userInfoString.sub));
+  const user = JSON.parse(userInfoString);
+
+  console.log('User:', user.sub);
+  console.log('PostedBy ID: ', postedBy?._id);
+
+  const alreadySaved = !!(save?.filter((item) => item.postedBy?._id === user.sub));
 
   const savePin = async (postId) => {
     if (!alreadySaved) {
@@ -31,7 +36,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
         .setIfMissing({ save: [] })
         .insert("after", "save[-1]", [{
           _key: uuidv4(),
-          userId: userInfoString.sub,
+          userId: user.sub,
           postedBy: {
             _type: "postedBy",
             _ref: sanityClient.sub
@@ -109,7 +114,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
                   {destination?.slice(8, 17)}...
                 </a>
               ) : undefined}
-              {postedBy?._id === userInfoString.sub && (
+              {postedBy?._id === user.sub && (
                 <button
                   type="button"
                   onClick={(e) => {
