@@ -20,6 +20,13 @@ const CreatePin = ({ user }) => {
 
   const navigate = useNavigate();
 
+  const stringifiedUser = JSON.stringify(user);
+  const parsedUser = JSON.parse(stringifiedUser);
+
+  console.log(`Stringified User: ${stringifiedUser}`);
+
+  console.log(`Parsed User: ${parsedUser.user.email}`);
+
   return (
     <div className="flex flex-col justify-center items-center mt-5 lg:h-4/5">
       {fields && (
@@ -91,7 +98,16 @@ const CreatePin = ({ user }) => {
         </div>
 
         <div className="flex flex-1 flex-col gap-6 lg:pl-5 mt-5 w-full">
-          
+          {parsedUser && (
+            <div className="flex gap-2 my-2 items-center bg-white  rounded-md w-full">
+              <img
+                src={parsedUser.user.picture ? parsedUser.user.picture : "https://via.placeholder.com/150"}
+                alt="user-profile"
+                className="w-10 h-10 rounded-full"
+              />
+              <p className="text-xl font-bold">{parsedUser.user.name}</p>
+            </div>
+          )}
           <input
             type="text"
             placeholder="Title"
