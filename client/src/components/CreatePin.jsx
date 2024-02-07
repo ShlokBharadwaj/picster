@@ -23,10 +23,6 @@ const CreatePin = ({ user }) => {
   const stringifiedUser = JSON.stringify(user);
   const parsedUser = JSON.parse(stringifiedUser);
 
-  console.log(`Stringified User: ${stringifiedUser}`);
-
-  console.log(`Parsed User: ${parsedUser.user.email}`);
-
   return (
     <div className="flex flex-col justify-center items-center mt-5 lg:h-4/5">
       {fields && (
