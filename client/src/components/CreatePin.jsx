@@ -89,6 +89,23 @@ const CreatePin = ({ user }) => {
             )}
           </div>
         </div>
+
+        <div className="flex flex-1 flex-col gap-6 lg:pl-5 mt-5 w-full">
+          
+          <input
+            type="text"
+            placeholder="Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            className="border-2 border-gray-300 p-2 rounded-md w-full"
+          />
+          <textarea
+            placeholder="About"
+            value={about}
+            onChange={(e) => setAbout(e.target.value)}
+            className="border-2 border-gray-300 p-2 rounded-md w-full resize-none"
+          />
+        </div>
       </div>
     </div>
   )
