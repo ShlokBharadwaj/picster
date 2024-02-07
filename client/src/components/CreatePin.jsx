@@ -60,7 +60,6 @@ const CreatePin = ({ user }) => {
                         .upload('image', e.target.files[0], { contentType: type, filename: name })
                         .then((res) => {
                           setImageAsset(res.url);
-                          // setImageAsset(res);
                           setLoading(false);
                         })
                         .catch((err) => {
@@ -74,11 +73,19 @@ const CreatePin = ({ user }) => {
                 />
               </label>
             ) : (
-              <img
-                src={imageAsset}
-                alt="pin"
-                className="w-full h-full object-cover"
-              />
+              <div className="w-full h-full relative">
+                <img
+                  src={imageAsset}
+                  alt="pin"
+                  className="w-full h-full object-contain"
+                />
+                <button
+                  type="button"
+                  onClick={() => setImageAsset(null)}
+                  className="bg-white p-2 rounded-full w-9 h-9 flex items-center justify-center text-black opacity-75 hover:opacity-100 outline-none absolute top-0 right-0 transition-all duration-500 hover:animate-zoom-in">
+                  <MdDelete size={20} />
+                </button>
+              </div>
             )}
           </div>
         </div>
