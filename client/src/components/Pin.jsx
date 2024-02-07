@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { urlFor, sanityClient } from "../client";
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
@@ -25,10 +25,17 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
 
   // console.log('User:', user.sub);
   // console.log('PostedBy ID: ', postedBy?._id);
+  const [alreadySaved, setAlreadySaved] = useState(false);
+  const [saveCount, setSaveCount] = useState(save?.length || 0);
 
-  const alreadySaved = !!(save?.filter((item) => item.postedBy?._id === user.sub));
 
-  const savePin = async (postId) => {
+  useEffect(() => {
+    const isSaved = !!(save?.filter((item) => item.postedBy?._id === user.sub));
+    setAlreadySaved(isSaved);
+    setSaveCount(save?.length || 0);
+  }, [save]);
+
+  const savePin = (postId) => {
     if (!alreadySaved) {
 
       sanityClient
@@ -44,7 +51,9 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
         }])
         .commit()
         .then(() => {
-          window.location.reload();
+          setAlreadySaved(true);
+          setSaveCount((prevCount) => prevCount + 1);
+          // window.location.reload();
         })
     }
   };
@@ -88,7 +97,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
                     savePin(_id);
                   }}
                   className="bg-red-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-2 text-base rounded-full hover:shadow-md outline-none">
-                  {save?.length}  Saved
+                  {saveCount}  Saved
                 </button>
               ) : (
                 <button
