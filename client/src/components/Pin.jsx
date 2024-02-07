@@ -6,6 +6,7 @@ import { MdDownloadForOffline } from 'react-icons/md';
 import { AiTwotoneDelete } from "react-icons/ai";
 import { BsFillArrowUpRightCircleFill } from "react-icons/bs";
 import { fetchUser } from "../utils/fetchUsers";
+import { CiLocationArrow1 } from "react-icons/ci";
 
 const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
 
@@ -124,9 +125,10 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
         )
         }
       </div >
-      <Link to={`/user-profile/${postedBy?._id}`} className="flex gap-2 mt-2 items-center">
+      <Link to={`/user-profile/${postedBy?._id}`} className="flex gap-2 mt-2 items-center hover:shadow-lg opacity-75 hover:opacity-100 rounded-full transition-all duration-300 ease-linear hover:scale-105">
         <img src={postedBy?.image} alt="user-profile" className="w-8 h-8 rounded-full object-cover" />
         <h1 className="text-base font-normal text-black">{postedBy?.userName}</h1>
+        <CiLocationArrow1 />
       </Link>
     </div >
   );
