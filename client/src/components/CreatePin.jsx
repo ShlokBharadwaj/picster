@@ -101,7 +101,7 @@ const CreatePin = ({ user }) => {
                       sanityClient.assets
                         .upload('image', e.target.files[0], { contentType: type, filename: name })
                         .then((res) => {
-                          setImageAsset(res.url);
+                          setImageAsset(res);
                           setLoading(false);
                         })
                         .catch((err) => {
@@ -117,7 +117,7 @@ const CreatePin = ({ user }) => {
             ) : (
               <div className="w-full h-full relative">
                 <img
-                  src={imageAsset}
+                  src={imageAsset.url}
                   alt="pin"
                   className="w-full h-full object-contain"
                 />
