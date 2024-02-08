@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { MdDownloadForOffline } from 'react-icons/md';
 import { AiOutlineCloudUpload } from 'react-icons/ai';
 import { MdDelete } from 'react-icons/md';
+import { CiLocationArrow1 } from "react-icons/ci";
 
 
 import { sanityClient, urlFor } from '../client.js';
@@ -88,6 +89,10 @@ const PinDetails = ({ user }) => {
           <p className="text-base font-light break-words -mt-4">
             {pinDetails?.about}
           </p>
+          <Link to={`/user-profile/${pinDetails.postedBy?._id}`} className="flex gap-2 mt-0 items-center rounded-full transition-all duration-300 ease-linear max-w-fit hover:shadow-2xl">
+            <img src={pinDetails.postedBy?.image} alt="user-profile" className="w-10 h-10 rounded-full object-cover" />
+            <h1 className="text-base font-semibold text-black">{pinDetails.postedBy?.userName}</h1>
+          </Link>
           <div className="flex gap-2 my-2 items-center bg-white  rounded-md w-full">
             <img
               src={"https://via.placeholder.com/150"}
