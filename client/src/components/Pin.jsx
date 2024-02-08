@@ -120,7 +120,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
                   onClick={(e) => e.stopPropagation()}
                   className="flex items-center gap-2 text-black bg-white font-bold p-2 pl-4 pr-4 rounded-full opacity-70 hover:opacity-100 hover:shadow-lg ml-1">
                   <BsFillArrowUpRightCircleFill />
-                  {destination?.slice(8, 17)}...
+                  {destination.length > 16 ? `${destination.slice(0, 16)}...` : destination.slice(8)}
                 </a>
               ) : undefined}
               {postedBy?._id === user.sub && (
