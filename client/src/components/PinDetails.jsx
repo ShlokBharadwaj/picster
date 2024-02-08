@@ -93,17 +93,17 @@ const PinDetails = ({ user }) => {
             <img src={pinDetails.postedBy?.image} alt="user-profile" className="w-10 h-10 rounded-full object-cover" />
             <h1 className="text-base font-semibold text-black">{pinDetails.postedBy?.userName}</h1>
           </Link>
-          <h2 className="mt-3 text-xl">Comments</h2>
-          <div className="max-h-370 overflow-y-auto">
+          <div className="max-h-370 overflow-y-auto rounded-md">
+          <h2 className="mt-0 mb-2 text-xl font-normal">Comments</h2>
             {pinDetails?.comments?.map((comment, index) => (
-              <div key={index} className="flex gap-2 mt-5 items-center rounded-lg bg-white p-3 shadow-2xl">
+              <div key={index} className="flex gap-2 mt-0 items-center rounded-lg bg-white pb-3">
                 <img src={comment.postedBy.image}
                   alt="user-profile"
-                  className="w-10 h-10 rounded-full object-cover cursor-pointer"
+                  className="w-8 h-8 rounded-full object-cover cursor-pointer"
                 />
                 <div className="flex flex-col">
-                  <p className="font-bold">{comment.postedBy.userName}</p>
-                  <p>{comment.comment}</p>
+                  <p className="font-semibold text-sm">{comment.postedBy.userName}</p>
+                  <p className="text-sm font-normal">{comment.comment}</p>
                 </div>
               </div>
             ))}
