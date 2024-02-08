@@ -10,6 +10,21 @@ import { pinDetailMorePinQuery, pinDetailQuery } from '../utils/data.js';
 import Spinner from './Spinner.jsx';
 
 const PinDetails = ({ user }) => {
+
+  const [pins, setPins] = useState(null);
+  const [pinDetails, setPinDetails] = useState(null);
+  const [comment, setComment] = useState('');
+  const [commenting, setCommenting] = useState(false);
+  const { pinId } = useParams();
+
+  console.log("The pin id is: ", pinId);
+
+  if (!pinDetails) {
+    return (
+      <Spinner message={'Loading your pin...'}/>
+    );
+  }
+
   return (
     <div>PinDetails</div>
   )
