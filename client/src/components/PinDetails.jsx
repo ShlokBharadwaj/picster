@@ -21,6 +21,31 @@ const PinDetails = ({ user }) => {
   const { pinId } = useParams();
 
 
+  const addComments = () => {
+    if (comment) {
+      setCommenting(true);
+
+      sanityClient
+        .patch(pinId)
+        .setIfMissing({ comments: [] })
+        .insert('after', 'comments[-1]', [
+          {
+            comment,
+            _key: uuidv4(),
+            postedBy: {
+              _type: 'postedBy',
+              _ref: user._id
+            }
+          }])
+        .commit()
+        .then(() => {
+          fetchPinDetails();
+          setComment('');
+          setCommenting(false);
+        })
+    }
+  };
+
   const fetchPinDetails = () => {
     let query = pinDetailQuery(pinId);
 
@@ -94,57 +119,38 @@ const PinDetails = ({ user }) => {
             <h1 className="text-base font-semibold text-black">{pinDetails.postedBy?.userName}</h1>
           </Link>
           <div className="max-h-370 overflow-y-auto rounded-md">
-          <h2 className="mt-0 mb-2 text-xl font-normal">Comments</h2>
+            <h2 className="mt-0 mb-2 text-xl font-normal">Comments</h2>
             {pinDetails?.comments?.map((comment, index) => (
               <div key={index} className="flex gap-2 mt-0 items-center rounded-lg bg-white pb-3">
-                <img src={comment.postedBy.image}
+                <img src={comment?.postedBy?.image}
                   alt="user-profile"
                   className="w-8 h-8 rounded-full object-cover cursor-pointer"
                 />
                 <div className="flex flex-col">
-                  <p className="font-semibold text-sm">{comment.postedBy.userName}</p>
+                  <p className="font-semibold text-sm">{comment?.postedBy?.userName}</p>
                   <p className="text-sm font-normal">{comment.comment}</p>
                 </div>
               </div>
             ))}
           </div>
 
-          <input
-            type="text"
-            placeholder="Title"
-            value={"title"}
-            className="border-2 border-gray-300 p-2 rounded-md w-full font-bold outline-none"
-          />
-          <textarea
-            placeholder="About"
-            value={"about"}
-            className="border-2 border-gray-300 p-2 rounded-md w-full resize-none outline-none"
-          />
-          <input
-            type="text"
-            placeholder="Destination"
-            value={"destination"}
-            className="border-2 border-gray-300 p-2 rounded-md w-full font-bold outline-none"
-          />
-          <div className="flex flex-col">
-            <div>
-              <p className="mb-2 font-semibold">Choose pin Category:</p>
-              <select
-                value={"category"}
-                className="border-2 border-gray-300 p-2 rounded-md w-full capitalize outline-none"
-              >
-                <option value={"other"} className="bg-white">Select Category</option>
-
-              </select>
-            </div>
-            <div>
-              <button
-                type="button"
-                className="text-black font-bold p-3 rounded-md w-full hover:shadow-lg transition-all duration-300 ease-linear mt-4 shadow-2xl outline-1">
-                Create Pin
-              </button>
-            </div>
+          <div className="flex flex-wrap mt-0 gap-3">
+            <Link to={`/user-profile/${pinDetails.postedBy?._id}`}>
+              <img src={pinDetails.postedBy?.image} alt="user-profile" className="w-10 h-10 rounded-full cursor-pointer" />
+            </Link>
+            <input type="text"
+              className="flex-1 border-gray-100 outline-none border-2 p-2 rounded-md focus:border-gray-300"
+              placeholder="Add a comment"
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+            />
           </div>
+          <button
+            type="button"
+            className="text-black font-bold p-3 rounded-md w-full hover:shadow-lg transition-all duration-300 ease-linear mt-4 shadow-2xl outline-1"
+            onClick={addComments}>
+            {commenting ? 'Commenting...' : 'Comment'}
+          </button>
         </div>
       </div>
     </div>
