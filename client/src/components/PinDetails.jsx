@@ -82,6 +82,12 @@ const PinDetails = ({ user }) => {
 
         <div className="flex flex-1 flex-col gap-6 lg:pl-5 mt-5 w-full">
 
+          <h1 className="text-4xl font-bold break-words">
+            {pinDetails?.title}
+          </h1>
+          <p className="text-base font-light break-words -mt-4">
+            {pinDetails?.about}
+          </p>
           <div className="flex gap-2 my-2 items-center bg-white  rounded-md w-full">
             <img
               src={"https://via.placeholder.com/150"}
