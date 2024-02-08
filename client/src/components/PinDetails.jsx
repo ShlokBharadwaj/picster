@@ -52,6 +52,8 @@ const PinDetails = ({ user }) => {
     );
   };
 
+  console.log('Pin Details:', pinDetails);
+
   return (
     <div className="flex flex-col justify-center items-center mt-5 lg:h-4/5 transition-all duration-200 animate-fade-in bg-white">
       <div className="flex lg:flex-row flex-col justify-center items-center bg-transparent p-3 lg:p-5 lg:w-4/5 w-full shadow-2xl">
@@ -67,9 +69,12 @@ const PinDetails = ({ user }) => {
                 href={`${pinDetails?.image?.asset?.url}?dl=`}
                 download
                 onClick={(e) => e.stopPropagation()}
-                className="bg-slate-300 p-2 rounded-full w-9 h-9 flex items-center justify-center text-black opacity-75 hover:opacity-100 outline-none absolute top-2 right-2 transition-all duration-500 hover:animate-zoom-in"
+                className="bg-slate-300 p-2 rounded-full w-9 h-9 flex items-center justify-center text-black opacity-60 hover:opacity-100 outline-none absolute top-2 right-2 transition-all duration-500 hover:animate-zoom-in"
               >
-                <MdDownloadForOffline className="w-9 h-9"/>
+                <MdDownloadForOffline className="w-9 h-9" />
+              </a>
+              <a href={pinDetails.destination} target="_blank" rel="noreferrer" className="bg-slate-300 p-2 rounded-full flex items-center justify-center text-black opacity-60 hover:opacity-100 outline-none absolute top-2 left-2 transition-all duration-500 hover:animate-zoom-in">
+                {pinDetails.destination}
               </a>
             </div>
           </div>
