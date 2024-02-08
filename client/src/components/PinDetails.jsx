@@ -17,13 +17,38 @@ const PinDetails = ({ user }) => {
   const [commenting, setCommenting] = useState(false);
   const { pinId } = useParams();
 
-  console.log("The pin id is: ", pinId);
+
+  const fetchPinDetails = () => {
+    let query = pinDetailQuery(pinId);
+
+    if (query) {
+      sanityClient
+        .fetch(query)
+        .then((data) => {
+          setPinDetails(data[0]);
+
+          if (data[0]) {
+            query = pinDetailMorePinQuery(data[0]);
+
+            sanityClient
+              .fetch(query)
+              .then((data) => {
+                setPins(data);
+              })
+          }
+        })
+    }
+  };
+
+  useEffect(() => {
+    fetchPinDetails();
+  }, [pinId]);
 
   if (!pinDetails) {
     return (
-      <Spinner message={'Loading your pin...'}/>
+      <Spinner message={'Loading your pin...'} />
     );
-  }
+  };
 
   return (
     <div>PinDetails</div>
