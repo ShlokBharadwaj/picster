@@ -63,11 +63,14 @@ const PinDetails = ({ user }) => {
                 alt="pin-image"
                 className="w-full h-full object-contain rounded-md"
               />
-              <button
-                type="button"
-                className="bg-slate-200 p-2 rounded-full w-9 h-9 flex items-center justify-center text-black opacity-75 hover:opacity-100 outline-none absolute top-2 right-2 transition-all duration-500 hover:animate-zoom-in">
-                <MdDelete size={20} />
-              </button>
+              <a
+                href={`${pinDetails?.image?.asset?.url}?dl=`}
+                download
+                onClick={(e) => e.stopPropagation()}
+                className="bg-slate-300 p-2 rounded-full w-9 h-9 flex items-center justify-center text-black opacity-75 hover:opacity-100 outline-none absolute top-2 right-2 transition-all duration-500 hover:animate-zoom-in"
+              >
+                <MdDownloadForOffline className="w-9 h-9"/>
+              </a>
             </div>
           </div>
         </div>
@@ -108,7 +111,7 @@ const PinDetails = ({ user }) => {
                 className="border-2 border-gray-300 p-2 rounded-md w-full capitalize outline-none"
               >
                 <option value={"other"} className="bg-white">Select Category</option>
-                
+
               </select>
             </div>
             <div>
