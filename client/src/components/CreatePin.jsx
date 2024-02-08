@@ -24,7 +24,7 @@ const CreatePin = ({ user }) => {
   const parsedUser = JSON.parse(stringifiedUser);
 
   // console.log(parsedUser.user.sub);
-  console.log('Parsed user value:', parsedUser);
+  // console.log('Parsed user value:', parsedUser);
 
   const savePin = () => {
     if (title && about && destination && imageAsset?._id && category) {
