@@ -53,44 +53,19 @@ const PinDetails = ({ user }) => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center mt-5 lg:h-4/5 transition-all duration-200 animate-fade-in">
-
-      <p className="text-center text-red-500 mb-0 text-xl transition-all duration-100 ease-linear">
-        Please fill all the fields!
-      </p>
-
-      <div className="flex lg:flex-row flex-col justify-center items-center bg-white p-3 lg:p-5 lg:w-4/5 w-full">
-        <div className="bg-secondaryColor p-3 flex flex-0.7 w-full">
-          <div className="flex justify-center items-center flex-col border-2 border-dotted border-gray-300 p-3 w-full h-420">
-
-            <p className="text-center text-red-500 mb-0 text-xl transition-all duration-100 ease-linear">
-              Please upload a valid image!
-
-            </p>
-
-            <label
-              htmlFor="file"
-              className="flex flex-col items-center justify-center w-full h-full cursor-pointer hover:scale-105 transition-all duration-300 ease-linear opacity-60 hover:opacity-100"
-            >
-              <AiOutlineCloudUpload size={60} />
-              <span className="text-xl">Upload Image</span>
-              <input
-                type="file"
-                id="file"
-                name="file"
-                accept="image/*"
-                className="hidden"
-              />
-            </label>
-
-            <div className="w-full h-full relative">
+    <div className="flex flex-col justify-center items-center mt-5 lg:h-4/5 transition-all duration-200 animate-fade-in bg-white">
+      <div className="flex lg:flex-row flex-col justify-center items-center bg-transparent p-3 lg:p-5 lg:w-4/5 w-full shadow-2xl">
+        <div className="p-3 flex flex-0.7 w-full shadow-2xl rounded-md bg-gray-50">
+          <div className="flex justify-center items-center flex-col p-0 w-full h-420">
+            <div className="w-full h-full relative bg-transparent">
               <img
-                alt="pin"
-                className="w-full h-full object-contain"
+                src={pinDetails?.image && urlFor(pinDetails.image).url()}
+                alt="pin-image"
+                className="w-full h-full object-contain rounded-md"
               />
               <button
                 type="button"
-                className="bg-white p-2 rounded-full w-9 h-9 flex items-center justify-center text-black opacity-75 hover:opacity-100 outline-none absolute top-0 right-0 transition-all duration-500 hover:animate-zoom-in">
+                className="bg-slate-200 p-2 rounded-full w-9 h-9 flex items-center justify-center text-black opacity-75 hover:opacity-100 outline-none absolute top-2 right-2 transition-all duration-500 hover:animate-zoom-in">
                 <MdDelete size={20} />
               </button>
             </div>
