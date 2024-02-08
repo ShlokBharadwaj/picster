@@ -67,7 +67,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
   };
 
   return (
-    <div className="m-2">
+    <div className="m-2 transition-all duration-1000 animate-zoom-in">
       <div
         onMouseEnter={() => setPostHovered(true)}
         onMouseLeave={() => setPostHovered(false)}
