@@ -5,6 +5,7 @@ import { userQuery } from "../utils/data";
 import { sanityClient } from '../client';
 import logo from '../assets/picster-logos_white.png';
 import { fetchUser } from "../utils/fetchUsers";
+import { categories } from "../utils/data";
 
 const Navbar = ({ searchTerm, setSearchTerm, userProp }) => {
 
@@ -16,21 +17,6 @@ const Navbar = ({ searchTerm, setSearchTerm, userProp }) => {
 
   const userInfoString = fetchUser();
   const userInfo = userInfoString ? JSON.parse(userInfoString) : null;
-
-  const categories = [
-    { name: 'Cars', link: '/category/cars' },
-    { name: 'Animals', link: '/category/animals' },
-    { name: 'Art', link: '/category/art' },
-    { name: 'Coding', link: '/category/coding' },
-    { name: 'Portraits', link: '/category/portraits' },
-    { name: 'Design', link: '/category/design' },
-    { name: 'Web', link: '/category/web' },
-    { name: 'UI Design', link: '/category/ui-design' },
-    { name: 'Abstract', link: '/category/abstract' },
-    { name: 'Memes', link: '/category/memes' },
-    { name: 'Photography', link: '/category/photography' },
-    { name: 'Others', link: '/category/others' },
-  ];
 
   useEffect(() => {
     const query = userQuery(userInfo?.sub);
@@ -89,7 +75,7 @@ const Navbar = ({ searchTerm, setSearchTerm, userProp }) => {
           <NavLink
             key={index}
             to={category.link}
-            className="hover:text-gray-400 rounded-md border border-transparent focus:border-white p-2 hover:border-white transition-all duration-300 ease-in-out focus:bg-gray-700 focus:text-white"
+            className="hover:text-gray-400 rounded-md border border-transparent focus:border-white p-2 hover:border-white transition-all duration-300 ease-in-out focus:bg-gray-700 focus:text-white capitalize"
             activeClassName="text-white"
           >
             {category.name}
