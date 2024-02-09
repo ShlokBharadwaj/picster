@@ -82,7 +82,7 @@ const Login = () => {
                   <button
                     onClick={renderProps.onClick}
                     disabled={renderProps.disabled}
-                    className='flex justify-center items-center bg-white text-black rounded-full p-3 shadow-lg'
+                    className='flex justify-center items-center bg-white text-black rounded-full p-3 shadow-2xl'
                   >
                     <FcGoogle size={30} />
                     <span className='ml-2'>Sign in with Google</span>

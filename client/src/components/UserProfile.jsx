@@ -27,11 +27,17 @@ const UserProfile = () => {
       .catch(console.error);
   }, [userID]);
 
+  const logoutGoogle = () => {
+    localStorage.removeItem('picster-user');
+    navigate('/login', { replace: true });
+  }
+
   if (!user) {
     return <Spinner message={"Loading User Profile"} />
   }
 
-  console.log(user);
+  console.log("userID: ", userID);
+  console.log("user._id: ", user._id);
 
   return (
     <div className="relative pb-2 h-full justify-center items-center transition-all duration-200 animate-fade-in">
@@ -45,6 +51,15 @@ const UserProfile = () => {
               alt="profile-photo"
               className="rounded-full w-32 h-32 -mt-16 shadow-2xl object-cover z-50" />
             <h3 className="font-bold text-3xl text-center mt-3">{user.userName}</h3>
+            {userID === user._id && (
+              <button
+                onClick={logoutGoogle}
+                className='flex justify-center items-center bg-white text-black rounded-full p-3 shadow-2xl mt-3'
+              >
+                <AiOutlineLogout size={30} />
+                <span className='ml-2'>Logout</span>
+              </button>
+            )}
           </div>
         </div>
       </div>
