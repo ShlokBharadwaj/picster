@@ -34,7 +34,7 @@ const PinDetails = ({ user }) => {
             _key: uuidv4(),
             postedBy: {
               _type: 'postedBy',
-              _ref: user._id
+              _ref: user.user.sub,
             }
           }])
         .commit()
@@ -79,6 +79,8 @@ const PinDetails = ({ user }) => {
   };
 
   console.log('Pin Details:', pinDetails);
+  console.log('Pins:', pins);
+  console.log('User:', user);
 
   return (
     <div className="flex flex-col justify-center items-center mt-5 lg:h-4/5 transition-all duration-200 animate-fade-in bg-white">

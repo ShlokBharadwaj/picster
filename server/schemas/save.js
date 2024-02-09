@@ -9,7 +9,7 @@ export default {
             type: 'postedBy'
         },
         {
-            name: 'userId',
+            name: 'userID',
             title: 'User Id',
             type: 'string'
         }

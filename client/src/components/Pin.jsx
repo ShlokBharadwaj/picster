@@ -43,7 +43,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
         .setIfMissing({ save: [] })
         .insert("after", "save[-1]", [{
           _key: uuidv4(),
-          userId: user.sub,
+          userID: user.sub,
           postedBy: {
             _type: "postedBy",
             _ref: sanityClient.sub
