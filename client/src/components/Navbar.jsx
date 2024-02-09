@@ -75,7 +75,7 @@ const Navbar = ({ searchTerm, setSearchTerm, userProp }) => {
           <NavLink
             key={index}
             to={category.link}
-            className="hover:text-gray-400 rounded-md border border-transparent focus:border-white p-2 hover:border-white transition-all duration-300 ease-in-out focus:bg-gray-700 focus:text-white capitalize flex flex-col items-center"
+            className="hover:text-gray-400 rounded-md border border-transparent focus:border-white p-2 hover:border-white transition-all duration-300 ease-in-out focus:bg-gray-700 focus:text-white capitalize flex flex-col items-center hover:scale-110"
             activeClassName="text-white"
           >
             <img src={category.image} alt={category.name} className="w-10 h-10 object-cover rounded-full" />
