@@ -33,7 +33,9 @@ To install Picster, follow these steps:
     ```
     npm start
     ```
-8. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+8. Open [http://localhost:3000](http://localhost:3000) to view the frontend in the browser.
+
+9. Open [http://localhost:3333](http://localhost:3333) to view the backend in the browser.
 
 ## Contributing to Picster
 
