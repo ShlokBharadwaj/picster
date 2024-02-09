@@ -27,6 +27,28 @@ const UserProfile = () => {
       .catch(console.error);
   }, [userID]);
 
+  useEffect(() => {
+    if (text === "Created Pins") {
+      const fetchCreatedPinsQuery = userCreatedPinsQuery(userID);
+
+      sanityClient.fetch(fetchCreatedPinsQuery)
+        .then((createdPins) => {
+          setCreatedPins(createdPins)
+          console.log("Created Pins: ", createdPins);
+        })
+        .catch(console.error);
+    } else {
+      const fetchSavedPinsQuery = userSavedPinsQuery(userID);
+
+      sanityClient.fetch(fetchSavedPinsQuery)
+        .then((savedPins) => {
+          setCreatedPins(savedPins)
+          console.log("Saved Pins: ", savedPins);
+        })
+        .catch(console.error);
+    }
+  }, [text, userID]);
+
   const logoutGoogle = () => {
     localStorage.removeItem('picster-user');
     navigate('/login', { replace: true });
@@ -36,8 +58,8 @@ const UserProfile = () => {
     return <Spinner message={"Loading User Profile"} />
   }
 
-  // console.log("userID: ", userID);
-  // console.log("user._id: ", user._id);
+  console.log("userID: ", userID);
+  console.log("user._id: ", user._id);
 
   return (
     <div className="relative pb-2 h-full justify-center items-center transition-all duration-200 animate-fade-in">
@@ -84,6 +106,15 @@ const UserProfile = () => {
             >
               Saved Pins
             </button>
+          </div>
+          {createdPins && createdPins.length === 0 && (
+            <div className="flex justify-center items-center">
+              <p className="text-2xl font-bold text-center text-gray-500">No Pins Found</p>
+            </div>
+          )
+          }
+          <div className="px-2">
+            <MasonryLayout pins={createdPins} />
           </div>
         </div>
       </div>
