@@ -75,14 +75,15 @@ const Navbar = ({ searchTerm, setSearchTerm, userProp }) => {
           <NavLink
             key={index}
             to={category.link}
-            className="hover:text-gray-400 rounded-md border border-transparent focus:border-white p-2 hover:border-white transition-all duration-300 ease-in-out focus:bg-gray-700 focus:text-white capitalize"
+            className="hover:text-gray-400 rounded-md border border-transparent focus:border-white p-2 hover:border-white transition-all duration-300 ease-in-out focus:bg-gray-700 focus:text-white capitalize flex flex-col items-center"
             activeClassName="text-white"
           >
+            <img src={category.image} alt={category.name} className="w-10 h-10 object-cover rounded-full" />
             {category.name}
           </NavLink>
         ))}
       </div>
-      <div className="md:hidden flex items-center justify-center p-2" onClick={() => setIsOpen(!isOpen)}>
+      <div className="md:hidden flex items-center justify-center p-2 capitalize" onClick={() => setIsOpen(!isOpen)}>
         <span>{activeCategory || "Menu"}</span>
         {isOpen ? <FiChevronUp size={24} /> : <FiChevronDown size={24} />}
       </div>
@@ -92,13 +93,14 @@ const Navbar = ({ searchTerm, setSearchTerm, userProp }) => {
             <NavLink
               key={index}
               to={category.link}
-              className="hover:text-gray-400 rounded-md border border-transparent focus:border-white p-2 hover:border-white transition-all duration-300 ease-in-out focus:bg-gray-700 focus:text-white"
+              className="hover:text-gray-400 rounded-md border border-transparent focus:border-white p-2 hover:border-white transition-all duration-300 ease-in-out focus:bg-gray-700 focus:text-white flex flex-col items-center capitalize"
               activeClassName="text-white"
               onClick={() => {
                 setIsOpen(false)
                 setActiveCategory(category.name)
               }}
             >
+              <img src={category.image} alt={category.name} className="w-10 h-10 object-cover rounded-full" />
               {category.name}
             </NavLink>
           ))}
