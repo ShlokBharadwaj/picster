@@ -54,7 +54,7 @@ export const feedQuery = `*[_type == 'pin'] | order(_createdAt desc) {
 }`;
 
 export const userSavedPinsQuery = (userId) => {
-  const query = `*[_type == 'pin' && '${userId}' in save[].userId ] | order(_createdAt desc) {
+  const query = `*[_type == 'pin' && '${userId}' in save[].userID ] | order(_createdAt desc) {
       image{
         asset->{
           url
@@ -79,7 +79,7 @@ export const userSavedPinsQuery = (userId) => {
 };
 
 export const userCreatedPinsQuery = (userId) => {
-  const query = `*[ _type == 'pin' && userId == '${userId}'] | order(_createdAt desc){
+  const query = `*[ _type == 'pin' && userID == '${userId}'] | order(_createdAt desc){
       image{
         asset->{
           url
