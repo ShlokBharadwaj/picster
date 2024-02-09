@@ -78,9 +78,9 @@ const PinDetails = ({ user }) => {
     );
   };
 
-  console.log('Pin Details:', pinDetails);
-  console.log('Pins:', pins);
-  console.log('User:', user);
+  // console.log('Pin Details:', pinDetails);
+  // console.log('Pins:', pins);
+  // console.log('User:', user);
 
   return (
     <>
@@ -157,7 +157,7 @@ const PinDetails = ({ user }) => {
           </div>
         </div>
       </div>
-      {console.log("Pins:", pins)}
+      {/* {console.log("Pins:", pins)} */}
       {
         pins?.length > 0 ? (
           <>
