@@ -34,17 +34,17 @@ const UserProfile = () => {
   console.log(user);
 
   return (
-    <div className="relative pb-2 h-full justify-center items-center">
+    <div className="relative pb-2 h-full justify-center items-center transition-all duration-200 animate-fade-in">
       <div className="flex flex-col pb-5">
         <div className="relative flex flex-col mb-7">
           <div className="flex flex-col justify-center items-center">
             <img src={randomImgSrc}
               alt={"cover-photo"}
-              className="w-screen h-64 shadow-md object-cover"
-            />
+              className="w-screen h-64 shadow-md object-cover" />
             <img src={user.image}
               alt="profile-photo"
-              className="rounded-full w-20 h-20 -mt-10 shadow-xl object-cover z-50" />
+              className="rounded-full w-32 h-32 -mt-16 shadow-2xl object-cover z-50" />
+            <h3 className="font-bold text-3xl text-center mt-3">{user.userName}</h3>
           </div>
         </div>
       </div>
