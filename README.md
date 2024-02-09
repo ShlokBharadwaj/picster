@@ -37,6 +37,28 @@ To install Picster, follow these steps:
 
 9. Open [http://localhost:3333](http://localhost:3333) to view the backend in the browser.
 
+## Using Picster
+
+To use Picster, follow these steps:
+
+<!-- Create a .env files with keys, take .env.sample for reference-->
+
+1. Go to the root of the client directory and create a `.env` file.
+
+```
+touch .env
+```
+
+2. Navigate to `.env.sample` in the same directory and copy the contents to `.env`.
+
+```
+cp .env.sample .env
+```
+
+3. Replace the values of the keys with your own values.
+
+*Hint*: _Follow the directions in the `.env.sample` file to know what values to replace._
+
 ## Contributing to Picster
 
 To contribute to Picster, follow these steps:
