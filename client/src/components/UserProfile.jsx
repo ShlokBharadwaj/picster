@@ -36,8 +36,8 @@ const UserProfile = () => {
     return <Spinner message={"Loading User Profile"} />
   }
 
-  console.log("userID: ", userID);
-  console.log("user._id: ", user._id);
+  // console.log("userID: ", userID);
+  // console.log("user._id: ", user._id);
 
   return (
     <div className="relative pb-2 h-full justify-center items-center transition-all duration-200 animate-fade-in">
@@ -64,7 +64,26 @@ const UserProfile = () => {
             </div>
           </div>
           <div className="text-center mb-7">
-
+            <button
+              type="button"
+              onClick={(e) => {
+                setText('Created Pins');
+                setActiveBtn('createdPins');
+              }}
+              className={`text-xl font-bold p-3 outline-none ${activeBtn === 'createdPins' ? 'text-blue-500' : 'text-gray-500'} hover:scale-105 transition-all duration-200 ease-in-out`}
+            >
+              Created Pins
+            </button>
+            <button
+              type="button"
+              onClick={(e) => {
+                setText('Saved Pins');
+                setActiveBtn('savedPins');
+              }}
+              className={`text-xl font-bold p-3 outline-none ${activeBtn === 'savedPins' ? 'text-blue-500' : 'text-gray-500'} hover:scale-105 transition-all duration-200 ease-in-out`}
+            >
+              Saved Pins
+            </button>
           </div>
         </div>
       </div>
