@@ -51,15 +51,20 @@ const UserProfile = () => {
               alt="profile-photo"
               className="rounded-full w-32 h-32 -mt-16 shadow-2xl object-cover z-50" />
             <h3 className="font-bold text-3xl text-center mt-3">{user.userName}</h3>
-            {userID === user._id && (
-              <button
-                onClick={logoutGoogle}
-                className='flex justify-center items-center bg-white text-black rounded-full p-3 shadow-2xl mt-3'
-              >
-                <AiOutlineLogout size={30} />
-                <span className='ml-2'>Logout</span>
-              </button>
-            )}
+            <div className="absolute top-2 right-2 z-10">
+              {userID === user._id && (
+                <button
+                  onClick={logoutGoogle}
+                  className='flex justify-center items-center bg-white text-black rounded-full p-3 shadow-2xl mt-3 hover:scale-105 transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 opacity-50 hover:opacity-100'
+                >
+                  <AiOutlineLogout size={30} />
+                  <span className='ml-2'>Logout</span>
+                </button>
+              )}
+            </div>
+          </div>
+          <div className="text-center mb-7">
+
           </div>
         </div>
       </div>
