@@ -25,25 +25,21 @@ const PinDetails = ({ user }) => {
     if (comment) {
       setCommenting(true);
 
-      const newComment = {
-        comment,
-        _key: uuidv4(),
-        postedBy: {
-          _type: 'postedBy',
-          _ref: user.user.sub,
-        }
-      };
-
       sanityClient
         .patch(pinId)
         .setIfMissing({ comments: [] })
-        .insert('after', 'comments[-1]', [newComment])
+        .insert('after', 'comments[-1]', [
+          {
+            comment,
+            _key: uuidv4(),
+            postedBy: {
+              _type: 'postedBy',
+              _ref: user.user.sub,
+            }
+          }])
         .commit()
         .then(() => {
-          setPinDetails(prevState => ({
-            ...prevState,
-            comments: [...prevState.comments, newComment]
-          }));
+          fetchPinDetails();
           setComment('');
           setCommenting(false);
         })
