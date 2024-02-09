@@ -42,6 +42,7 @@ const PinDetails = ({ user }) => {
           fetchPinDetails();
           setComment('');
           setCommenting(false);
+          window.location.reload();
         })
     }
   };
@@ -102,7 +103,7 @@ const PinDetails = ({ user }) => {
                 <MdDownloadForOffline className="w-9 h-9" />
               </a>
               <a href={pinDetails.destination} target="_blank" rel="noreferrer" className="bg-slate-300 p-2 rounded-full flex items-center justify-center text-black opacity-60 hover:opacity-100 outline-none absolute top-2 left-2 transition-all duration-500 hover:animate-zoom-in">
-                {pinDetails.destination}
+                {pinDetails.destination.length > 16 ? `${pinDetails.destination.slice(0, 16)}...` : pinDetails.destination}
               </a>
             </div>
           </div>
