@@ -39,6 +39,10 @@ const Navbar = ({ searchTerm, setSearchTerm, userProp }) => {
             src={logo}
             alt="logo"
             className="w-14 h-12 md:w-28 md:h-24 object-cover object-center -m-1"
+            onClick={() => {
+              setActiveCategory('');
+              setIsOpen(false);
+            }}
           />
         </Link>
         <input
@@ -48,14 +52,27 @@ const Navbar = ({ searchTerm, setSearchTerm, userProp }) => {
           onChange={(e) => setSearchTerm(e.target.value)}
           value={searchTerm}
           onFocus={() => navigate('/search')}
+          onClick={() => {
+            setActiveCategory('');
+            setIsOpen(false);
+          }}
         />
         <div className="flex space-x-0  md:space-x-4">
-          <button className="p-0 md:p-1">
+          <button className="p-0 md:p-1"
+            onClick={() => {
+              setActiveCategory('');
+              setIsOpen(false);
+            }}>
             <Link to="/create-pin">
               <FiPlus size={24} className="w-10 h-10 object-cover object-center rounded-full" />
             </Link>
           </button>
-          <button className="p-0 md:p-1">
+          <button className="p-0 md:p-1"
+            onClick={() => {
+              setActiveCategory('');
+              setIsOpen(false);
+            }}
+          >
             {userInfo ? (
               <Link to={`user-profile/${userInfo?.sub}`}>
                 <img
