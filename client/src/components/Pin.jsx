@@ -30,7 +30,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
 
 
   useEffect(() => {
-    const isSaved = !!(save?.filter((item) => item.postedBy?._id === user.sub));
+    const isSaved = !!(save?.filter((item) => item.postedBy?._id === user?.sub));
     setAlreadySaved(isSaved);
     setSaveCount(save?.length || 0);
   }, [save]);
