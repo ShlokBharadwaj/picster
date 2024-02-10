@@ -80,7 +80,7 @@ const PinDetails = ({ user }) => {
 
   // console.log('Pin Details:', pinDetails);
   // console.log('Pins:', pins);
-  // console.log('User:', user);
+  console.log('User:', user);
 
   return (
     <>
@@ -138,8 +138,8 @@ const PinDetails = ({ user }) => {
             </div>
 
             <div className="flex flex-wrap mt-0 gap-3">
-              <Link to={`/user-profile/${pinDetails.postedBy?._id}`}>
-                <img src={pinDetails.postedBy?.image} alt="user-profile" className="w-10 h-10 rounded-full cursor-pointer" />
+              <Link to={`/user-profile/${user?.sub}`}>
+                <img src={user?.picture} alt="user-profile" className="w-10 h-10 rounded-full cursor-pointer" />
               </Link>
               <input type="text"
                 className="flex-1 border-gray-100 outline-none border-2 p-2 rounded-md focus:border-gray-300"
