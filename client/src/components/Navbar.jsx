@@ -42,6 +42,7 @@ const Navbar = ({ searchTerm, setSearchTerm, userProp }) => {
             onClick={() => {
               setActiveCategory('');
               setIsOpen(false);
+              setSearchTerm('');
             }}
           />
         </Link>
