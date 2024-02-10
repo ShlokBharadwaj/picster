@@ -163,7 +163,7 @@ const CreatePin = ({ user }) => {
             placeholder="Destination"
             value={destination}
             onChange={(e) => setDestination(e.target.value)}
-            className="border-2 border-gray-300 p-2 rounded-md w-full font-bold outline-none"
+            className="border-2 border-gray-300 p-2 rounded-md w-full font-normal outline-none"
           />
           <div className="flex flex-col">
             <div>
