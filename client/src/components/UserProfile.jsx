@@ -19,6 +19,9 @@ const UserProfile = () => {
   const navigate = useNavigate();
   const { userID } = useParams();
 
+  const loggedInUserId = JSON.parse(localStorage.getItem('picster-user')).sub;
+  // console.log("loggedInUserId: ", loggedInUserId);
+
   useEffect(() => {
     const fetchUserQuery = userQuery(userID);
 
@@ -59,8 +62,8 @@ const UserProfile = () => {
     return <Spinner message={"Loading User Profile"} />
   }
 
-  //console.log("userID: ", userID);
-  //console.log("user._id: ", user._id);
+  // console.log("userID: ", userID);
+  // console.log("user._id: ", user._id);
 
   return (
     <div className="relative pb-2 h-full justify-center items-center transition-all duration-200 animate-fade-in">
@@ -75,7 +78,7 @@ const UserProfile = () => {
               className="rounded-full w-32 h-32 -mt-16 shadow-2xl object-cover z-50" />
             <h3 className="font-bold text-3xl text-center mt-3">{user.userName}</h3>
             <div className="absolute top-2 right-2 z-10">
-              {userID === user._id && (
+              {userID === loggedInUserId && (
                 <button
                   onClick={logoutGoogle}
                   className='flex justify-center items-center bg-white text-black rounded-full p-3 shadow-2xl mt-3 hover:scale-105 transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 opacity-50 hover:opacity-100'

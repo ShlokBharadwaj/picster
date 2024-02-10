@@ -80,7 +80,7 @@ const PinDetails = ({ user }) => {
 
   // console.log('Pin Details:', pinDetails);
   // console.log('Pins:', pins);
-  console.log('User:', user);
+  // console.log('User:', user);
 
   return (
     <>
