@@ -35,7 +35,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
     const isSaved = !!(save?.filter((item) => item.postedBy?._id === userId));
     setAlreadySaved(isSaved);
     setSaveCount(save?.length || 0);
-  }, [save]);
+  }, [save, userId]);
 
   const savePin = (postId) => {
 

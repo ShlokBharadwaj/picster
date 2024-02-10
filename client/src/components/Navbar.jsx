@@ -29,7 +29,7 @@ const Navbar = ({ searchTerm, setSearchTerm, userProp }) => {
         }
       })
       .catch(console.error);
-  }, []);
+  }, [userInfo?.sub]);
 
   return (
     <div className="flex flex-col bg-gray-800 text-white w-full md:w-screen">

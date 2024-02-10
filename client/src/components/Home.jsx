@@ -24,7 +24,7 @@ const Home = () => {
         }
       })
       .catch(console.error);
-  }, []);
+  }, [userInfo?.sub]);
 
   return (
     <>

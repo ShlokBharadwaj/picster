@@ -73,7 +73,7 @@ const PinDetails = ({ user }) => {
 
   useEffect(() => {
     fetchPinDetails();
-  }, [pinId]);
+  }, [pinId, fetchPinDetails]);
 
   if (!pinDetails) {
     return (
@@ -94,7 +94,7 @@ const PinDetails = ({ user }) => {
               <div className="w-full h-full relative bg-transparent">
                 <img
                   src={pinDetails?.image && urlFor(pinDetails.image).url()}
-                  alt="pin-image"
+                  alt="pin-details"
                   className="w-full h-full object-contain rounded-md"
                 />
                 <a
