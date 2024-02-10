@@ -19,7 +19,7 @@ const UserProfile = () => {
   const navigate = useNavigate();
   const { userID } = useParams();
 
-  const loggedInUserId = JSON.parse(localStorage.getItem('picster-user')).sub;
+  const loggedInUserId = JSON.parse(localStorage.getItem('picster-user'))?.sub;
   // console.log("loggedInUserId: ", loggedInUserId);
 
   useEffect(() => {
