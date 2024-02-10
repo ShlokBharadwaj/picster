@@ -83,7 +83,9 @@ const Navbar = ({ searchTerm, setSearchTerm, userProp }) => {
                 />
               </Link>
             ) : (
-              <FiUser size={24} />
+              <Link to="/login">
+                <FiUser size={24} />
+              </Link>
             )}
           </button>
         </div>
