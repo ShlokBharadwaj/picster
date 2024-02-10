@@ -71,10 +71,10 @@ const UserProfile = () => {
         <div className="relative flex flex-col mb-7">
           <div className="flex flex-col justify-center items-center">
             <img src={randomImgSrc}
-              alt={"cover-photo"}
+              alt={"cover"}
               className="w-screen h-64 shadow-md object-cover" />
             <img src={user.image}
-              alt="profile-photo"
+              alt="profile"
               className="rounded-full w-32 h-32 -mt-16 shadow-2xl object-cover z-50" />
             <h3 className="font-bold text-3xl text-center mt-3">{user.userName}</h3>
             <div className="absolute top-2 right-2 z-10">

@@ -72,7 +72,7 @@ const Login = () => {
           />
           <div className='absolute flex flex-col justify-center items-center top-0 right-0 left-0 bottom-0' style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }}>
             <div className='p-5'>
-              <img src={logo} alt="" width='150px' />
+              <img src={logo} alt="logo" width='150px' />
             </div>
             <div className='shadow-2xl'>
               <GoogleLogin

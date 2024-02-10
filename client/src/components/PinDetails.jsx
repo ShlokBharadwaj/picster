@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { MdDownloadForOffline } from 'react-icons/md';
@@ -49,7 +49,7 @@ const PinDetails = ({ user }) => {
     }
   };
 
-  const fetchPinDetails = () => {
+  const fetchPinDetails = useCallback(() => {
     let query = pinDetailQuery(pinId);
 
     if (query) {
@@ -69,11 +69,11 @@ const PinDetails = ({ user }) => {
           }
         })
     }
-  };
+  }, [pinId]);
 
   useEffect(() => {
     fetchPinDetails();
-  }, [pinId, fetchPinDetails]);
+  }, [fetchPinDetails]);
 
   if (!pinDetails) {
     return (
