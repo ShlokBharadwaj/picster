@@ -3,7 +3,7 @@ Picster is a Social Media Application that revolves around Photos.
 
 ## Live Demo
 
-You can view the live demo of Picster [here](https://picster-web.netlify.app/).
+You can view the live demo of picster [here](https://picster-web.netlify.app/).
 
 ## Screenshot
 
