@@ -34,7 +34,7 @@ const UserProfile = () => {
       sanityClient.fetch(fetchCreatedPinsQuery)
         .then((createdPins) => {
           setCreatedPins(createdPins)
-          console.log("Created Pins: ", createdPins);
+          //console.log("Created Pins: ", createdPins);
         })
         .catch(console.error);
     } else {
@@ -43,7 +43,7 @@ const UserProfile = () => {
       sanityClient.fetch(fetchSavedPinsQuery)
         .then((savedPins) => {
           setCreatedPins(savedPins)
-          console.log("Saved Pins: ", savedPins);
+          //console.log("Saved Pins: ", savedPins);
         })
         .catch(console.error);
     }
@@ -58,8 +58,8 @@ const UserProfile = () => {
     return <Spinner message={"Loading User Profile"} />
   }
 
-  console.log("userID: ", userID);
-  console.log("user._id: ", user._id);
+  //console.log("userID: ", userID);
+  //console.log("user._id: ", user._id);
 
   return (
     <div className="relative pb-2 h-full justify-center items-center transition-all duration-200 animate-fade-in">

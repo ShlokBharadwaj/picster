@@ -35,6 +35,14 @@ const Feed = () => {
     return <Spinner message="We are loading new images to your feed!" />;
   }
 
+  if (!pins?.length) {
+    return (
+      <div className="flex justify-center items-center mt-4">
+        <p className="text-2xl font-bold text-center text-gray-500">No Pins Found</p>
+      </div>
+    )
+  }
+
   return (
     <div>
       <MasonryLayout pins={pins} />
