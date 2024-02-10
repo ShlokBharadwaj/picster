@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Route, Routes, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { FiPlus, FiUser, FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import { userQuery } from "../utils/data";
 import { sanityClient } from '../client';

@@ -2,9 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { MdDownloadForOffline } from 'react-icons/md';
-import { AiOutlineCloudUpload } from 'react-icons/ai';
-import { MdDelete } from 'react-icons/md';
-import { CiLocationArrow1 } from "react-icons/ci";
 
 
 import { sanityClient, urlFor } from '../client.js';
