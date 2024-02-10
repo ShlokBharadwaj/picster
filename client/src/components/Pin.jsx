@@ -23,6 +23,8 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
 
   const user = JSON.parse(userInfoString);
 
+  const userId = user ? user.sub : null;
+
   // console.log('User:', user.sub);
   // console.log('PostedBy ID: ', postedBy?._id);
   const [alreadySaved, setAlreadySaved] = useState(false);
@@ -30,20 +32,21 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
 
 
   useEffect(() => {
-    const isSaved = !!(save?.filter((item) => item.postedBy?._id === user?.sub));
+    const isSaved = !!(save?.filter((item) => item.postedBy?._id === userId));
     setAlreadySaved(isSaved);
     setSaveCount(save?.length || 0);
   }, [save]);
 
   const savePin = (postId) => {
-    if (!alreadySaved) {
+
+    if (!alreadySaved && userId) {
 
       sanityClient
         .patch(postId)
         .setIfMissing({ save: [] })
         .insert("after", "save[-1]", [{
           _key: uuidv4(),
-          userID: user.sub,
+          userID: userId,
           postedBy: {
             _type: "postedBy",
             _ref: sanityClient.sub
@@ -120,10 +123,10 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
                   onClick={(e) => e.stopPropagation()}
                   className="flex items-center gap-2 text-black bg-white font-bold p-2 pl-4 pr-4 rounded-full opacity-70 hover:opacity-100 hover:shadow-lg ml-1">
                   <BsFillArrowUpRightCircleFill />
-                  {destination.length > 16 ? `${destination.slice(0, 16)}...` : destination.slice(8)}
+                  {destination?.length > 16 ? `${destination.slice(0, 16)}...` : destination.slice(8)}
                 </a>
               ) : undefined}
-              {postedBy?._id === user.sub && (
+              {postedBy?._id === userId && (
                 <button
                   type="button"
                   onClick={(e) => {
