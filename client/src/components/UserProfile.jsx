@@ -50,6 +50,7 @@ const UserProfile = () => {
   }, [text, userID]);
 
   const logoutGoogle = () => {
+    googleLogout();
     localStorage.removeItem('picster-user');
     navigate('/login', { replace: true });
   }
