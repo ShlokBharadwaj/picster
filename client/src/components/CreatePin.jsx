@@ -23,8 +23,6 @@ const CreatePin = ({ user }) => {
   const stringifiedUser = JSON.stringify(user);
   const parsedUser = JSON.parse(stringifiedUser);
 
-  // console.log(parsedUser.user.sub);
-  // console.log('Parsed user value:', parsedUser);
 
   const savePin = () => {
     if (title && about && destination && imageAsset?._id && category) {
@@ -41,10 +39,10 @@ const CreatePin = ({ user }) => {
             _ref: imageAsset?._id
           }
         },
-        userID: parsedUser.user.sub,
+        userID: parsedUser.sub,
         postedBy: {
           _type: "postedBy",
-          _ref: parsedUser.user.sub,
+          _ref: parsedUser.sub,
         },
         category,
       };
@@ -61,6 +59,10 @@ const CreatePin = ({ user }) => {
       }, 2000);
     }
   };
+
+  // console.log('Stringified User value: ',stringifiedUser);
+  // console.log('Parsed user value:', parsedUser);
+  // console.log('Picture link: ', parsedUser.picture);
 
   return (
     <div className="flex flex-col justify-center items-center mt-5 lg:h-4/5 transition-all duration-200 animate-fade-in">
@@ -136,11 +138,11 @@ const CreatePin = ({ user }) => {
           {parsedUser && (
             <div className="flex gap-2 my-2 items-center bg-white  rounded-md w-full">
               <img
-                src={parsedUser.user.picture ? parsedUser.user.picture : "https://via.placeholder.com/150"}
+                src={parsedUser.picture ? parsedUser.picture : "https://via.placeholder.com/150"}
                 alt="user-profile"
                 className="w-10 h-10 rounded-full"
               />
-              <p className="text-xl font-bold">{parsedUser.user.name}</p>
+              <p className="text-xl font-bold">{parsedUser.name}</p>
             </div>
           )}
           <input

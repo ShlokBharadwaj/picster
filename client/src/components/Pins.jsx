@@ -3,12 +3,13 @@ import { Routes, Route } from 'react-router-dom';
 
 import { Navbar, Feed, PinDetails, CreatePin, Search, UserProfile } from './index';
 
-const Pins = (user) => {
+const Pins = ({ user }) => {
 
   const [searchTerm, setSearchTerm] = useState('');
 
   return (
     <div className="h-full">
+      <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} user={user && user} />
       <Routes>
         <Route path="/" element={<div className="px-2 md:px-5"><Feed /></div>} />
         <Route path="/category/:categoryId" element={<div className="px-2 md:px-5"><Feed /></div>} />
