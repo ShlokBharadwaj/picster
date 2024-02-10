@@ -64,6 +64,16 @@ const CreatePin = ({ user }) => {
   // console.log('Parsed user value:', parsedUser);
   // console.log('Picture link: ', parsedUser.picture);
 
+  if (!parsedUser) {
+    return (
+      <div className="flex flex-col justify-center items-center mt-5 lg:h-4/5 transition-all duration-200 animate-fade-in">
+        <p className="text-center text-red-500 mb-0 text-xl transition-all duration-100 ease-linear">
+          Please login to create a pin!
+        </p>
+      </div>
+    )
+  }
+
   return (
     <div className="flex flex-col justify-center items-center mt-5 lg:h-4/5 transition-all duration-200 animate-fade-in">
       {fields && (
