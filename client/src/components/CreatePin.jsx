@@ -74,6 +74,34 @@ const CreatePin = ({ user }) => {
     )
   }
 
+  const handleImageUpload = (e) => {
+    const { type, name, size } = e.target.files[0];
+    const MAX_SIZE = 2000000; // 2MB
+
+    if (size > MAX_SIZE) {
+      alert("File size is too large. Maximum size is 2MB.");
+      return;
+    }
+
+    if (type.includes('image')) {
+      setWrongImageType(false);
+      setLoading(true);
+
+      sanityClient.assets
+        .upload('image', e.target.files[0], { contentType: type, filename: name })
+        .then((res) => {
+          setImageAsset(res);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.error("Error uploading image", err);
+          setLoading(false);
+        });
+    } else {
+      setWrongImageType(true);
+    }
+  };
+
   return (
     <div className="flex flex-col justify-center items-center mt-5 lg:h-4/5 transition-all duration-200 animate-fade-in">
       {fields && (
@@ -104,26 +132,7 @@ const CreatePin = ({ user }) => {
                   name="file"
                   accept="image/*"
                   className="hidden"
-                  onChange={(e) => {
-                    const { type, name } = e.target.files[0];
-                    if (type.includes('image')) {
-                      setWrongImageType(false);
-                      setLoading(true);
-
-                      sanityClient.assets
-                        .upload('image', e.target.files[0], { contentType: type, filename: name })
-                        .then((res) => {
-                          setImageAsset(res);
-                          setLoading(false);
-                        })
-                        .catch((err) => {
-                          console.error("Error uploading image", err);
-                          setLoading(false);
-                        });
-                    } else {
-                      setWrongImageType(true);
-                    }
-                  }}
+                  onChange={handleImageUpload}
                 />
               </label>
             ) : (
